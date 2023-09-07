@@ -1,0 +1,77 @@
+{
+    "name": "osamaalmamri/laravel-search",
+    "description": "This is my package laravel-search",
+    "keywords": [
+        "OsamaAlmamri",
+        "laravel",
+        "laravel-search"
+    ],
+    "homepage": "https://github.com/osamaalmamri/laravel-search",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Osama Al-mamari",
+            "email": "yemencoder@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/database": "^8.0|^9.0",
+        "illuminate/support": "^8.0|^9.0",
+        "spatie/laravel-package-tools": "^1.9"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.4",
+        "orchestra/testbench": "^6.23|^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "OsamaAlmamri\\LaravelSearch\\": "src/",
+            "OsamaAlmamri\\LaravelSearch\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OsamaAlmamri\\LaravelSearch\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@composer run prepare",
+        "clear": "@php vendor/bin/testbench package:purge-laravel-search --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": [
+            "@composer run prepare",
+            "@php vendor/bin/testbench workbench:build --ansi"
+        ],
+        "start": [
+            "Composer\\Config::disableProcessTimeout",
+            "@composer run build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "OsamaAlmamri\\LaravelSearch\\LaravelSearchServiceProvider"
+            ],
+            "aliases": {
+                "LaravelSearch": "OsamaAlmamri\\LaravelSearch\\Facades\\LaravelSearch"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
